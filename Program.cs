@@ -12,10 +12,11 @@ namespace arrays
             {
                 list.Add(new Objects(i, i.ToString()));
             }
-            foreach (Objects l in list)
-            {
-                Console.WriteLine(l.ToString());
-            }
+            Console.WriteLine(list[0].ToString());
+            //foreach (Objects l in list)
+            //{
+            //    Console.WriteLine(l.ToString());
+            //}
         }
     }
 }

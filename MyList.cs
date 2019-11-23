@@ -4,7 +4,16 @@ using System.Collections.Generic;
 
 public class List<T> : ICollection<T>, IList<T>, IEnumerable
 {
-    public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public T this[int index]
+    {
+        get {
+            return a[index];
+            }
+        set
+        {
+            a[index] = value;
+        }
+    }
 
     public int Count => throw new NotImplementedException();
 
@@ -14,35 +23,34 @@ public class List<T> : ICollection<T>, IList<T>, IEnumerable
 
     public List ()
     {
-        a = new T[1];
+        a = new T[0];
     }
 
     public void Add(T item)
     {
-        //int l = a.Length+1;
-        /*try
-        {
-            l = a.Length;
-        }
-        catch
-        {
-            l = 0;
-        }
-        Console.Write("Length of array is " + l);
-        //a = new T[l+1];
-        a[l] = item;*/
-        //a = new T[1];
-        a[a.Length-1] = item;
+        int len = a.Length + 1;
+        a = new T[len];
+        a[len - 1] = item;
     }
+
+    //public void GetEnumerator()
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     public void Clear()
     {
-        throw new NotImplementedException();
+        a = new T[0];
     }
 
     public bool Contains(T item)
     {
-        throw new NotImplementedException();
+       for (int i =0; i<a.Length; i++)
+        {
+            if (a[i].Equals(item))
+                return true;
+        }
+        return false;
     }
 
     public void CopyTo(T[] array, int arrayIndex)
@@ -50,10 +58,10 @@ public class List<T> : ICollection<T>, IList<T>, IEnumerable
         throw new NotImplementedException();
     }
 
-    public IEnumerator<T> GetEnumerator()
-    {
-        throw new NotImplementedException();
-    }
+    //public IEnumcerator<T> GetEnumerator()
+    //{
+     //   return (IEnumcerator)a.GetEnumerator();
+    //}
 
     public int IndexOf(T item)
     {
@@ -78,5 +86,10 @@ public class List<T> : ICollection<T>, IList<T>, IEnumerable
     IEnumerator IEnumerable.GetEnumerator()
     {
         throw new NotImplementedException();
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return ((ICollection<T>)a).GetEnumerator();
     }
 }
